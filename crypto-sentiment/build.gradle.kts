@@ -22,13 +22,10 @@ avro {
     fieldVisibility.set("PRIVATE")
 }
 
-val lombokVersion: String = "1.18.22"
 
 dependencies {
     errorprone("com.google.errorprone:error_prone_core:2.18.0")
     implementation("com.google.code.gson:gson:2.10.1")
-    implementation("org.projectlombok:lombok:$lombokVersion")
-    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
     implementation("io.confluent:kafka-streams-avro-serde:7.3.1") {
         exclude("org.apache.kafka:kafka-clients")
     }
