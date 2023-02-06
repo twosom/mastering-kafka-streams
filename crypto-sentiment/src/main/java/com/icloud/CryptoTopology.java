@@ -2,9 +2,10 @@ package com.icloud;
 
 import com.icloud.language.LanguageClient;
 import com.icloud.model.EntitySentiment;
+import com.icloud.serialization.JsonSerdes;
 import com.icloud.serialization.Tweet;
 import com.icloud.serialization.avro.AvroSerdes;
-import com.icloud.serialization.json.TweetSerdes;
+import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.Topology;
@@ -19,9 +20,10 @@ public class CryptoTopology {
 
     public static Topology buildV1() {
         final StreamsBuilder builder = new StreamsBuilder();
+        final Serde<Tweet> tweetSerde = JsonSerdes.of(Tweet.class);
 
         final KStream<byte[], Tweet> tweetsKStream = builder.stream("tweets",
-                Consumed.with(Serdes.ByteArray(), new TweetSerdes()));
+                Consumed.with(Serdes.ByteArray(), tweetSerde));
         tweetsKStream.print(Printed.<byte[], Tweet>toSysOut().withLabel("tweets-stream"));
 
         return builder.build();
@@ -29,9 +31,9 @@ public class CryptoTopology {
 
     public static Topology build(final LanguageClient languageClient) {
         final StreamsBuilder builder = new StreamsBuilder();
-
+        final Serde<Tweet> tweetSerde = JsonSerdes.of(Tweet.class);
         final KStream<byte[], Tweet> tweetsKStream =
-                builder.stream("tweets", Consumed.with(Serdes.ByteArray(), new TweetSerdes()));
+                builder.stream("tweets", Consumed.with(Serdes.ByteArray(), tweetSerde));
 
 
         // TODO source -> filter

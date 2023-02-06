@@ -9,7 +9,6 @@ plugins {
 }
 
 group = "com.icloud"
-version = "unspecified"
 
 repositories {
     mavenCentral()
