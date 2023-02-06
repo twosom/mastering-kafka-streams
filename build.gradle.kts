@@ -17,9 +17,11 @@ subprojects {
     }
     dependencies {
         implementation("org.apache.kafka:kafka-streams:3.3.2")
-        implementation("org.projectlombok:lombok:$lombokVersion")
-        annotationProcessor("org.projectlombok:lombok:$lombokVersion")
         if (project.name != "json-serde") {
+            implementation("org.slf4j:slf4j-api:1.7.3")
+            implementation("ch.qos.logback:logback-classic:1.2.3")
+            implementation("org.projectlombok:lombok:$lombokVersion")
+            annotationProcessor("org.projectlombok:lombok:$lombokVersion")
             implementation(project(":json-serde"))
         }
     }

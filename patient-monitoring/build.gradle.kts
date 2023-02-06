@@ -5,17 +5,16 @@ plugins {
 
 group = "com.icloud"
 
-repositories {
-    mavenCentral()
-}
-
 application {
     mainClass.set("com.icloud.App")
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     implementation("io.javalin:javalin:5.3.2")
-    implementation("com.squareup.okhttp3:okhttp:4.10.0")
 }
 
 task("runFirst", JavaExec::class) {
@@ -23,7 +22,7 @@ task("runFirst", JavaExec::class) {
     classpath = sourceSets.main.get().runtimeClasspath
     systemProperties = mapOf(
             "host" to "localhost",
-            "port" to "8080",
+            "port" to "8000",
             "stateDir" to "/tmp/kafka-streams"
     )
 }
@@ -33,7 +32,7 @@ task("runSecond", JavaExec::class) {
     classpath = sourceSets.main.get().runtimeClasspath
     systemProperties = mapOf(
             "host" to "localhost",
-            "port" to "8090",
-            "stateDir" to "/tmp/kafka-streams1"
+            "port" to "8100",
+            "stateDir" to "/tmp/kafka-streams2"
     )
 }
