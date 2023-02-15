@@ -15,7 +15,11 @@ public record TurbineState(
     }
 
     public boolean isHighWindAndPowerOn() {
-        return this.windSpeedMph > 65 && this.power == Power.ON;
+        return this.windSpeedMph() > 65 && this.power == Power.ON;
+    }
+
+    public Double windSpeedMph() {
+        return this.windSpeedMph == null ? 0 : this.windSpeedMph;
     }
 
     public enum Power {ON, OFF}
