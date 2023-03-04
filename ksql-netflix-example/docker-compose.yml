@@ -41,7 +41,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka:9092
   
   ksqldb-server:
-    image: confluentinc/ksqldb-server
+    image: confluentinc/cp-ksqldb-server:latest.arm64
     hostname: ksqldb-server
     container_name: ksqldb-server
     command: [ "ksql-server-start", "/etc/ksqldb-server/server.properties" ]
@@ -59,9 +59,8 @@ services:
       - ./files/ksqldb-server:/etc/ksqldb-server
 
   ksqldb-cli:
-    image: confluentinc/ksqldb-cli
+    image: confluentinc/cp-ksqldb-cli:latest.arm64
     container_name: ksqldb-cli
-    command: [ "ksql", "http://ksqldb-server:8088", "--config-file", "/etc/ksqldb-cli/cli.properties" ]
     depends_on:
       - kafka
       - ksqldb-server

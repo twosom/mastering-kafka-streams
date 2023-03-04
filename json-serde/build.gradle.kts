@@ -1,8 +1,8 @@
 plugins {
-    id 'java'
+    java
 }
 
-group 'com.icloud'
+group = "com.icloud"
 
 repositories {
     mavenCentral()
