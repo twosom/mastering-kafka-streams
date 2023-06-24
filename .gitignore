@@ -42,3 +42,9 @@ bin/
 ### Mac OS ###
 .DS_Store
 
+### Terraform ###
+.terraform
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+
