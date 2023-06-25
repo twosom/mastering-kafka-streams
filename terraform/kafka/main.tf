@@ -7,12 +7,13 @@ terraform {
   }
 }
 
+
 resource "docker_container" "kafka" {
   image = "confluentinc/cp-kafka:latest"
   name  = var.container_name
 
   env = [
-    "KAFKA_BROKER_ID=${tonumber(var.server_id) + 1}",
+    "KAFKA_BROKER_ID=${var.server_id}",
     "KAFKA_ZOOKEEPER_CONNECT=${tostring(join(",", var.zookeeper_connect_list))}",
     "KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT",
     "KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${var.container_name}:9092,PLAINTEXT_INTERNAL://localhost:${local.broker_port}",
@@ -25,12 +26,11 @@ resource "docker_container" "kafka" {
 
   ports {
     external = local.broker_port
-    internal = 9092
+    internal = local.broker_port
   }
 
   hostname = var.container_name
 }
-
 locals {
   broker_port = 9092 + tonumber(var.server_id + 1)
 }
