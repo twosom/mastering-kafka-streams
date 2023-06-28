@@ -9,3 +9,4 @@ pluginManagement {
     }
 }
 include("common")
+include("video-game-leaderboard")

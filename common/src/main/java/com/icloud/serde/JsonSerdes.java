@@ -11,10 +11,14 @@ import java.nio.charset.StandardCharsets;
 
 public class JsonSerdes<T> implements Serde<T> {
 
+    public static <T> JsonSerdes<T> of(Class<T> targetClass) {
+        return new JsonSerdes<>(targetClass);
+    }
+
     private JsonSerdes() {/*Not Allow instantiation*/}
 
     private final Gson gson = new GsonBuilder()
-            .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+            .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .create();
 
     private Class<T> targetClass;
