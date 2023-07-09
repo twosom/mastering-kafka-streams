@@ -11,3 +11,4 @@ pluginManagement {
 include("common")
 include("video-game-leaderboard")
 include("patient-monitoring")
+include("digital-twin")
