@@ -15,6 +15,11 @@ resource "docker_container" "ksqldb-cli" {
     name = var.network
   }
 
+  volumes {
+    host_path      = abspath("${path.module}/files/ksqldb-cli")
+    container_path = "/etc/sql"
+  }
+
   entrypoint = ["/bin/sh"]
   tty        = true
 

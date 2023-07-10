@@ -19,8 +19,6 @@ resource "docker_container" "ksqldb-server" {
     external = 8088
     internal = 8088
   }
-
-  working_dir = "/etc/ksqldb-server"
   hostname    = var.container_name
 
   volumes {
@@ -28,5 +26,5 @@ resource "docker_container" "ksqldb-server" {
     container_path = "/etc/ksqldb-server"
   }
 
-  command = ["ksql-server-start", "ksql-server.properties"]
+  command = ["/etc/ksqldb-server/run.sh"]
 }
