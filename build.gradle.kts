@@ -1,5 +1,3 @@
-import java.net.URI
-
 plugins {
     java
 }
@@ -8,9 +6,7 @@ val lombokVersion: String = "1.18.22"
 
 subprojects {
     repositories {
-        maven {
-            url = URI("https://packages.confluent.io/maven")
-        }
+        maven(url = "https://packages.confluent.io/maven")
     }
     apply {
         plugin("java")

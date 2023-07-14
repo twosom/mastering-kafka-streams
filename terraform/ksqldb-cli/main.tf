@@ -17,6 +17,11 @@ resource "docker_container" "ksqldb-cli" {
 
   volumes {
     host_path      = abspath("${path.module}/files/ksqldb-cli")
+    container_path = "/etc/ksqldb-cli"
+  }
+
+  volumes {
+    host_path = abspath("${path.module}/files/sql")
     container_path = "/etc/sql"
   }
 

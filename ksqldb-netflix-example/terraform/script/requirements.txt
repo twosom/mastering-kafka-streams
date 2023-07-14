@@ -1,0 +1,9 @@
+nltk~=3.8.1
+kafka-python
+Faker~=18.11.1
+avro~=1.11.1
+avro-python3~=1.10.2
+confluent_kafka
+fastavro~=1.8.0
+requests~=2.31.0
+kafka-schema-registry
